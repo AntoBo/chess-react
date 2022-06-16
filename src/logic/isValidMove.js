@@ -1,3 +1,4 @@
+const letters = ["a", "b", "c", "d", "e"];
 let moveTo, moveFrom, board;
 
 const isValidMove = ({ move, incomingBoard }) => {
@@ -10,9 +11,14 @@ const isValidMove = ({ move, incomingBoard }) => {
   board = incomingBoard;
 
   const isMoveFromOk = Boolean(board[moveFrom].rank);
-  const isMoveToOk = isMoveToFree() && boardHasField() && isRangeOk();
+  const isMoveToOk =
+    isNotStamping() && isMoveToFree() && boardHasField() && isRangeOk();
 
   return isMoveFromOk && isMoveToOk;
+};
+
+const isNotStamping = () => {
+  return moveFrom !== moveTo;
 };
 
 const isMoveToFree = () => {
@@ -29,16 +35,27 @@ const isRangeOk = () => {
     case "king":
       isRangeOk = isKingsRangeOk();
       break;
+    case "pawn":
+      isRangeOk = isPawnsRangeOk();
+      break;
+    case "rook":
+      isRangeOk = isRooksRangeOk();
+      break;
 
     default:
       break;
   }
   return isRangeOk;
 };
-
 const isKingsRangeOk = () => {
-  //   console.log("isKingsRangeOk");
-  return true;
+  const fromLet = letters.indexOf(moveFrom[0]) + 1;
+  const fromNum = Number(moveFrom[1]);
+
+  const toLet = letters.indexOf(moveTo[0]) + 1;
+  const toNum = Number(moveTo[1]);
+  return Math.abs(fromNum - toNum) <= 1 && Math.abs(fromLet - toLet) <= 1;
 };
+const isPawnsRangeOk = () => {};
+const isRooksRangeOk = () => {};
 
 export default isValidMove;

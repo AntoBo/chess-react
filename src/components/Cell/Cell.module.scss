@@ -3,19 +3,35 @@
   width: 20%;
   height: 20%;
   outline: 1px grey solid;
+  &:before {
+    position: absolute;
+    content: "";
+  }
 }
 
 .king {
   &:before {
-    position: absolute;
-    content: "";
     left: 35%;
     top: 10%;
     width: 30%;
     height: 70%;
   }
-
-  // background-color: black;
+}
+.pawn {
+  &:before {
+    left: 35%;
+    bottom: 10%;
+    width: 30%;
+    height: 30%;
+  }
+}
+.rook {
+  &:before {
+    left: 10%;
+    bottom: 10%;
+    width: 70%;
+    height: 70%;
+  }
 }
 
 .black {
