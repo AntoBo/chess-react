@@ -1,10 +1,12 @@
 import s from "./Cell.module.scss";
 
-const Cell = ({ id, piece, armyColor }) => {
-  const paintSell = (id) => {};
+const Cell = ({ id, piece, armyColor, bgc }) => {
+  //   const paintSell = (id) => {};
   return (
     <div
-      className={`${s.cell} ${piece && s[piece]} ${armyColor && s[armyColor]}`}
+      className={`${s.cell} ${piece && s[piece]} ${armyColor && s[armyColor]} ${
+        s[bgc]
+      }`}
     >
       {id}
     </div>

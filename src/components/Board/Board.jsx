@@ -51,12 +51,13 @@ const Board = () => {
   return (
     <>
       <div className={s.board}>
-        {Object.entries(board).map((el) => (
+        {Object.entries(board).map((el, idx) => (
           <Cell
             key={el[0]}
             id={el[0]}
             piece={el[1].rank}
             armyColor={el[1].armyColor}
+            bgc={idx % 2 === 0 ? "dark-bg" : "light-bg"}
           />
         ))}
       </div>
