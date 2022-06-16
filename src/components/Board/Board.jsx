@@ -16,15 +16,18 @@ const Board = () => {
       setMove("");
       return;
     }
-    if (isValidMove({ move: move + key, board })) {
-      console.log("move is valid, setting new board...");
+
+    setMove((move) => move + key);
+    if (isValidMove({ move: move + key, incomingBoard: board })) {
+      const moveFrom = move.slice(0, 2);
+      const moveTo = move.slice(2);
       setBoard((board) => ({
         ...board,
-        [move.slice(0, 2)]: {},
-        [move.slice(2) + key]: board.a2,
+        [moveFrom]: {},
+        [moveTo + key]: board[moveFrom],
       }));
+      setMove("");
     }
-    setMove((move) => move + key);
   };
 
   useEffect(() => {
@@ -45,7 +48,7 @@ const Board = () => {
           />
         ))}
       </div>
-      <p>Move listener: {move}</p>
+      <p>White moves: {move}</p>
     </>
   );
 };

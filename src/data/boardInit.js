@@ -23,5 +23,5 @@ export const boardInit = {
   a2: { rank: "king", armyColor: "white" },
   a3: {},
   a4: {},
-  a5: {},
+  a5: { rank: "king", armyColor: "black" },
 };
