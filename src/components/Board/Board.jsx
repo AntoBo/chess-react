@@ -7,7 +7,7 @@ import s from "./Board.module.scss";
 
 const Board = () => {
   const [board, setBoard] = useState(boardInit);
-  //   const [pieces, setPieces] = useState(piecesInitSet);
+  const [turns, setTurns] = useState([]);
   const [move, setMove] = useState("");
 
   const handleInput = ({ key }) => {
@@ -16,9 +16,14 @@ const Board = () => {
       setMove("");
       return;
     }
-
     setMove((move) => move + key);
-    if (isValidMove({ move: move + key, incomingBoard: board })) {
+    if (
+      isValidMove({
+        move: move + key,
+        incomingBoard: board,
+        incomingTurns: turns,
+      })
+    ) {
       const moveFrom = move.slice(0, 2);
       const moveTo = move.slice(2);
       setBoard((board) => ({
@@ -27,6 +32,13 @@ const Board = () => {
         [moveTo + key]: board[moveFrom],
       }));
       setMove("");
+      setTurns((turns) => [
+        ...turns,
+        `${
+          board[moveFrom].rank !== "pawn" &&
+          board[moveFrom].rank[0].toUpperCase()
+        }${moveFrom}-${moveTo + key}`,
+      ]);
     }
   };
 
@@ -48,7 +60,9 @@ const Board = () => {
           />
         ))}
       </div>
-      <p>White moves: {move}</p>
+      <p>
+        {turns.length % 2 === 0 ? "White" : "Black"} moves: {move}
+      </p>
     </>
   );
 };
