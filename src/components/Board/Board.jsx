@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { boardInit } from "../../data/boardInit";
-import { piecesInitSet } from "../../data/pieces";
+// import { piecesInitSet } from "../../data/pieces";
+import isValidMove from "../../logic/isValidMove";
 import Cell from "../Cell/Cell";
 import s from "./Board.module.scss";
 
 const Board = () => {
   const [board, setBoard] = useState(boardInit);
-  const [pieces, setPieces] = useState(piecesInitSet);
+  //   const [pieces, setPieces] = useState(piecesInitSet);
   const [move, setMove] = useState("");
 
   const handleInput = ({ key }) => {
@@ -15,7 +16,14 @@ const Board = () => {
       setMove("");
       return;
     }
-
+    if (isValidMove({ move: move + key, board })) {
+      console.log("move is valid, setting new board...");
+      setBoard((board) => ({
+        ...board,
+        [move.slice(0, 2)]: {},
+        [move.slice(2) + key]: board.a2,
+      }));
+    }
     setMove((move) => move + key);
   };
 
@@ -28,12 +36,12 @@ const Board = () => {
   return (
     <>
       <div className={s.board}>
-        {board.map((field, idx) => (
+        {Object.entries(board).map((el) => (
           <Cell
-            key={idx}
-            id={field.coor}
-            piece={field.piece}
-            armyColor={field.armyColor}
+            key={el[0]}
+            id={el[0]}
+            piece={el[1].rank}
+            armyColor={el[1].armyColor}
           />
         ))}
       </div>
