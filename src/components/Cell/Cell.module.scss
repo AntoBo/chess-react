@@ -1,0 +1,31 @@
+.cell {
+  position: relative;
+  width: 20%;
+  height: 20%;
+  outline: 1px grey solid;
+}
+
+.king {
+  &:before {
+    position: absolute;
+    content: "";
+    left: 35%;
+    top: 10%;
+    width: 30%;
+    height: 70%;
+  }
+
+  // background-color: black;
+}
+
+.black {
+  &:before {
+    background-color: black;
+  }
+}
+
+.white {
+  &:before {
+    border: 1px solid black;
+  }
+}
