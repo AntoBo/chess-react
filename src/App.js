@@ -1,12 +1,7 @@
 import Board from "./components/Board/Board";
-import Container from "./components/Container/Container";
 
 function App() {
-  return (
-    <Container>
-      <Board />
-    </Container>
-  );
+  return <Board />;
 }
 
 export default App;

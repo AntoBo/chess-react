@@ -3,6 +3,7 @@ import { boardInit } from "../../data/boardInit";
 // import { piecesInitSet } from "../../data/pieces";
 import isValidMove from "../../logic/isValidMove";
 import Cell from "../Cell/Cell";
+import Log from "../Log/Log";
 import s from "./Board.module.scss";
 
 const Board = () => {
@@ -35,8 +36,9 @@ const Board = () => {
       setTurns((turns) => [
         ...turns,
         `${
-          board[moveFrom].rank !== "pawn" &&
-          board[moveFrom].rank[0].toUpperCase()
+          Boolean(board[moveFrom].rank !== "pawn")
+            ? board[moveFrom].rank[0].toUpperCase()
+            : ""
         }${moveFrom}-${moveTo + key}`,
       ]);
     }
@@ -49,7 +51,7 @@ const Board = () => {
     };
   });
   return (
-    <>
+    <div className={s.container}>
       <div className={s.board}>
         {Object.entries(board).map((el, idx) => (
           <Cell
@@ -61,10 +63,8 @@ const Board = () => {
           />
         ))}
       </div>
-      <p>
-        {turns.length % 2 === 0 ? "White" : "Black"} moves: {move}
-      </p>
-    </>
+      <Log turnsLog={turns} move={move} />
+    </div>
   );
 };
 

@@ -1,0 +1,25 @@
+.container {
+  margin-left: 30px;
+  width: 200px;
+  padding: 10px;
+  //   text-align: center;
+  border: 1px solid black;
+}
+
+p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    width: 50%;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
