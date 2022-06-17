@@ -1,14 +1,15 @@
 import s from "./Cell.module.scss";
 
-const Cell = ({ id, piece, armyColor, bgc }) => {
-  //   const paintSell = (id) => {};
+const Cell = ({ id, piece, armyColor, coor }) => {
+  const cellColor = id % 2 === 0 ? "dark-bg" : "light-bg";
+
   return (
     <div
       className={`${s.cell} ${piece && s[piece]} ${armyColor && s[armyColor]} ${
-        s[bgc]
+        s[cellColor]
       }`}
     >
-      {id}
+      <span>{coor}</span>
     </div>
   );
 };

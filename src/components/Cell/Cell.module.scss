@@ -1,10 +1,13 @@
 .cell {
   position: relative;
+  display: flex;
+  align-items: flex-end;
   width: 20%;
   height: 20%;
-  outline: 1px grey solid;
-  // background-color: rgb(224, 224, 224);
+  color: grey;
   &:before {
+    width: 100%;
+    height: 100%;
     position: absolute;
     content: "";
   }
@@ -12,104 +15,39 @@
     position: absolute;
     content: "";
   }
+  & span {
+    margin: 5px;
+  }
 }
 
 .dark-bg {
-  background-color: green;
+  background-color: rgb(122, 188, 122);
 }
 .light-bg {
-  background-color: white;
+  background-color: rgb(255, 225, 225);
 }
 
 .king {
   &:before {
-    bottom: 10%;
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(
-      46% 3%,
-      45% 9%,
-      35% 10%,
-      35% 17%,
-      43% 16%,
-      43% 24%,
-      26% 32%,
-      22% 40%,
-      24% 46%,
-      38% 52%,
-      23% 93%,
-      24% 100%,
-      72% 100%,
-      73% 93%,
-      58% 53%,
-      68% 44%,
-      68% 34%,
-      52% 25%,
-      52% 17%,
-      62% 15%,
-      62% 9%,
-      52% 10%,
-      53% 2%
-    );
+    background-image: url("../../assets/king.png");
+    background-size: contain;
   }
 }
 .pawn {
   &:before {
-    // left: 35%;
-    bottom: 10%;
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(
-      29% 99%,
-      23% 92%,
-      43% 68%,
-      41% 52%,
-      53% 48%,
-      59% 57%,
-      55% 68%,
-      73% 92%,
-      69% 99%
-    );
+    background-image: url("../../assets/pawn.png");
+    background-size: contain;
   }
 }
 .rook {
   &:before {
-    left: 10%;
-    bottom: 10%;
-    width: 70%;
-    height: 70%;
-    clip-path: polygon(
-      18% 8%,
-      34% 1%,
-      28% 26%,
-      43% 25%,
-      41% 5%,
-      57% 5%,
-      55% 25%,
-      69% 25%,
-      66% 2%,
-      84% 10%,
-      81% 31%,
-      66% 48%,
-      79% 88%,
-      76% 100%,
-      26% 99%,
-      20% 87%,
-      34% 47%,
-      20% 34%
-    );
+    background-image: url("../../assets/rook.png");
+    background-size: contain;
   }
 }
 
 .black {
   &:before {
-    background-color: black;
-  }
-}
-
-.white {
-  &:before {
-    // border: 1px solid black;
-    background-color: grey;
+    filter: invert(1);
   }
 }

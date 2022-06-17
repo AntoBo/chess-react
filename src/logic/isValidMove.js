@@ -65,7 +65,6 @@ const isKingsRangeOk = () =>
 
 const isPawnsRangeOk = () => {
   const dir = turn === "white" ? 1 : -1;
-  //only white pawn!
   const canMove = () =>
     fromNum === toNum &&
     toLet - fromLet === 1 * dir &&
@@ -80,6 +79,14 @@ const isPawnsRangeOk = () => {
   };
   return canMove() || canHit();
 };
-const isRooksRangeOk = () => {};
+const isRooksRangeOk = () => {
+  //   let path = Array.from(
+  //     Array(Math.abs(fromNum - toNum)),
+  //     (_, index) => index + toNum
+  //   );
+  //   console.log("path ", path);
+  const isStraight = fromNum === toNum || fromLet === toLet;
+  return isStraight;
+};
 
 export default isValidMove;
