@@ -2,9 +2,9 @@ const letters = ["a", "b", "c", "d", "e"];
 let moveTo, moveFrom, fromLet, fromNum, toLet, toNum, board, turn;
 
 const isValidMove = ({ move, incomingBoard, incomingTurns }) => {
-  if (move.length < 4) {
-    return;
-  }
+  //   if (move.length < 4) {
+  //     return;
+  //   }
 
   moveFrom = move.slice(0, 2);
   moveTo = move.slice(2);
@@ -15,7 +15,7 @@ const isValidMove = ({ move, incomingBoard, incomingTurns }) => {
   board = incomingBoard;
   turn = incomingTurns.length % 2 === 0 ? "white" : "black";
 
-  const isMoveFromOk = Boolean(board[moveFrom].rank);
+  const isMoveFromOk = Boolean(board[moveFrom]?.rank);
   const isMoveToOk =
     isArmyTurn() &&
     isNotStamping() &&
@@ -27,7 +27,7 @@ const isValidMove = ({ move, incomingBoard, incomingTurns }) => {
 };
 
 const isArmyTurn = () => {
-  return turn === board[moveFrom].armyColor;
+  return turn === board[moveFrom]?.armyColor;
 };
 
 const isNotStamping = () => {

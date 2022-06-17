@@ -12,7 +12,13 @@ code {
     monospace;
 }
 ul,
-li {
+li,
+p {
   margin: 0;
   padding: 0;
+}
+p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }

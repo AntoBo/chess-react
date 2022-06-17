@@ -10,37 +10,46 @@ const Board = () => {
   const [board, setBoard] = useState(boardInit);
   const [turns, setTurns] = useState([]);
   const [move, setMove] = useState("");
+  const [warning, setWarning] = useState("");
 
   const handleInput = ({ key }) => {
     //clear input if
+    const inputLengthOk = move.length + 1 === 4;
     if (key === "Escape" || key === "Backspace") {
       setMove("");
       return;
     }
     setMove((move) => move + key);
-    if (
-      isValidMove({
-        move: move + key,
-        incomingBoard: board,
-        incomingTurns: turns,
-      })
-    ) {
-      const moveFrom = move.slice(0, 2);
-      const moveTo = move.slice(2);
-      setBoard((board) => ({
-        ...board,
-        [moveFrom]: {},
-        [moveTo + key]: board[moveFrom],
-      }));
-      setMove("");
-      setTurns((turns) => [
-        ...turns,
-        `${
-          Boolean(board[moveFrom].rank !== "pawn")
-            ? board[moveFrom].rank[0].toUpperCase()
-            : ""
-        }${moveFrom}-${moveTo + key}`,
-      ]);
+    setWarning("");
+
+    if (inputLengthOk) {
+      if (
+        isValidMove({
+          move: move + key,
+          incomingBoard: board,
+          incomingTurns: turns,
+        })
+      ) {
+        const moveFrom = move.slice(0, 2);
+        const moveTo = move.slice(2);
+        setBoard((board) => ({
+          ...board,
+          [moveFrom]: {},
+          [moveTo + key]: board[moveFrom],
+        }));
+        setMove("");
+        setTurns((turns) => [
+          ...turns,
+          `${
+            Boolean(board[moveFrom].rank !== "pawn")
+              ? board[moveFrom].rank[0].toUpperCase()
+              : ""
+          }${moveFrom}-${moveTo + key}`,
+        ]);
+      } else {
+        setMove("");
+        setWarning("Invalid move");
+      }
     }
   };
 
@@ -63,7 +72,7 @@ const Board = () => {
           />
         ))}
       </div>
-      <Log turnsLog={turns} move={move} />
+      <Log turnsLog={turns} move={move} warning={warning} />
     </div>
   );
 };
