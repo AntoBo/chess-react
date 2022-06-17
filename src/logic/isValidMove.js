@@ -2,10 +2,6 @@ const letters = ["a", "b", "c", "d", "e"];
 let moveTo, moveFrom, fromLet, fromNum, toLet, toNum, board, turn;
 
 const isValidMove = ({ move, incomingBoard, incomingTurns }) => {
-  //   if (move.length < 4) {
-  //     return;
-  //   }
-
   moveFrom = move.slice(0, 2);
   moveTo = move.slice(2);
   fromLet = letters.indexOf(moveFrom[0]) + 1;

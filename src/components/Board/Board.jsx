@@ -12,7 +12,7 @@ const Board = () => {
   const [warning, setWarning] = useState("");
 
   const handleInput = ({ key }) => {
-    //clear input if
+    // clear input if
     const inputLengthOk = move.length + 1 === 4;
     if (key === "Escape" || key === "Backspace") {
       setMove("");
@@ -53,9 +53,9 @@ const Board = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleInput);
+    window.addEventListener("keypress", handleInput);
     return () => {
-      window.removeEventListener("keydown", handleInput);
+      window.removeEventListener("keypress", handleInput);
     };
   });
   return (
