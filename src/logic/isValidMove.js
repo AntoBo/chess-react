@@ -80,11 +80,12 @@ const isPawnsRangeOk = () => {
   return canMove() || canHit();
 };
 const isRooksRangeOk = () => {
-  //   let path = Array.from(
-  //     Array(Math.abs(fromNum - toNum)),
-  //     (_, index) => index + toNum
-  //   );
-  //   console.log("path ", path);
+  const generatePath = (lineArr, dir) =>
+    dir === "hor"
+      ? lineArr.map((el) => el + moveFrom[0])
+      : lineArr.map((el) => el);
+  const isObstacles = (path) => path.some((el) => el.rank);
+
   const isStraight = fromNum === toNum || fromLet === toLet;
   return isStraight;
 };

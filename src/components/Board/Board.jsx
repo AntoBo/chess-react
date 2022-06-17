@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { boardInit } from "../../data/boardInit";
-// import { piecesInitSet } from "../../data/pieces";
+import boardInit from "../../data/board";
 import isValidMove from "../../logic/isValidMove";
 import Cell from "../Cell/Cell";
 import Log from "../Log/Log";
