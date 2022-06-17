@@ -35,7 +35,7 @@ const isNotStamping = () => {
 };
 
 const isMoveToFree = () => {
-  return board[moveFrom].armyColor !== board[moveTo].armyColor;
+  return board[moveFrom]?.armyColor !== board[moveTo]?.armyColor;
 };
 const boardHasField = () => {
   return Boolean(board[moveTo]);
