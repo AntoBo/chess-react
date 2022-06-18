@@ -1,7 +1,7 @@
 const board = {
   e1: {},
-  e2: {},
-  e3: { rank: "rook", armyColor: "black" },
+  e2: { rank: "rook", armyColor: "black" },
+  e3: { rank: "nknight", armyColor: "black" },
   e4: { rank: "king", armyColor: "black" },
   e5: {},
   d1: {},
@@ -21,8 +21,8 @@ const board = {
   b5: {},
   a1: {},
   a2: { rank: "king", armyColor: "white" },
-  a3: { rank: "rook", armyColor: "white" },
-  a4: {},
+  a3: { rank: "nknight", armyColor: "white" },
+  a4: { rank: "rook", armyColor: "white" },
   a5: {},
 };
 

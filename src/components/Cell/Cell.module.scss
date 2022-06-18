@@ -33,6 +33,12 @@
     background-size: contain;
   }
 }
+.nknight {
+  &:before {
+    background-image: url("../../assets/knight.png");
+    background-size: contain;
+  }
+}
 .pawn {
   &:before {
     background-image: url("../../assets/pawn.png");

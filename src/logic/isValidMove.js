@@ -50,6 +50,9 @@ const isRangeOk = () => {
     case "rook":
       isRangeOk = isRooksRangeOk();
       break;
+    case "nknight":
+      isRangeOk = isKnightRangeOk();
+      break;
 
     default:
       break;
@@ -78,6 +81,13 @@ const isPawnsRangeOk = () => {
 const isRooksRangeOk = () => {
   const isStraight = fromNum === toNum || fromLet === toLet;
   return isStraight;
+};
+
+const isKnightRangeOk = () => {
+  return (
+    (Math.abs(fromLet - toLet) === 2 && Math.abs(fromNum - toNum) === 1) ||
+    (Math.abs(fromLet - toLet) === 1 && Math.abs(fromNum - toNum) === 2)
+  );
 };
 
 export default isValidMove;
