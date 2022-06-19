@@ -4,7 +4,7 @@ const board = {
   e3: { rank: "nknight", armyColor: "black" },
   e4: { rank: "king", armyColor: "black" },
   e5: {},
-  d1: { rank: "rook", armyColor: "white" },
+  d1: {},
   d2: {},
   d3: { rank: "pawn", armyColor: "black" },
   d4: { rank: "pawn", armyColor: "black" },

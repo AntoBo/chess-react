@@ -11,13 +11,16 @@ const Board = () => {
   const [move, setMove] = useState("");
   const [warning, setWarning] = useState("");
 
-  const handleInput = ({ key }) => {
-    // clear input if
-    const inputLengthOk = move.length + 1 === 4;
+  const handleAbort = ({ key }) => {
     if (key === "Escape" || key === "Backspace") {
       setMove("");
-      return;
+      // return;
     }
+  };
+
+  const handleInput = ({ key }) => {
+    const inputLengthOk = move.length + 1 === 4;
+
     setMove((move) => move + key);
     setWarning("");
 
@@ -54,8 +57,10 @@ const Board = () => {
 
   useEffect(() => {
     window.addEventListener("keypress", handleInput);
+    window.addEventListener("keydown", handleAbort);
     return () => {
       window.removeEventListener("keypress", handleInput);
+      window.removeEventListener("keydown", handleAbort);
     };
   });
   return (
