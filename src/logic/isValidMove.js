@@ -79,7 +79,37 @@ const isPawnsRangeOk = () => {
   return canMove() || canHit();
 };
 const isRooksRangeOk = () => {
-  const isStraight = fromNum === toNum || fromLet === toLet;
+  const getPathFromLets = () => {
+    const long = Math.abs(fromLet - toLet) > 0 ? Math.abs(fromLet - toLet) : 1;
+    const min = Math.min(fromLet, toLet);
+    console.log("long ", long);
+    console.log("min ", min);
+    const lineArr = [...Array(long - 1).keys()].map((i) => i + min + 1);
+    console.log("lineArr ", lineArr);
+    const path = lineArr.map((el, idx) => letters[idx + min] + fromNum);
+    console.log("path ", path);
+    return path;
+  };
+  const getPathFromNums = () => {
+    const long = Math.abs(fromNum - toNum) > 0 ? Math.abs(fromNum - toNum) : 1;
+    const min = Math.min(fromNum, toNum);
+    console.log("long ", long);
+    console.log("min ", min);
+    const lineArr = [...Array(long - 1).keys()].map((i) => i + min + 1);
+    console.log("lineArr ", lineArr);
+    const path = lineArr.map((el, idx) => moveFrom[0] + el);
+    console.log("path ", path);
+    return path;
+  };
+
+  const isObstacles = (path) => path.some((el) => board[el]?.rank);
+  console.log(
+    "isObstacles(getPathFromNums()) ",
+    isObstacles(getPathFromNums())
+  );
+  const isStraight =
+    (fromNum === toNum && !isObstacles(getPathFromLets())) || //vert
+    (fromLet === toLet && !isObstacles(getPathFromNums())); //hor
   return isStraight;
 };
 
